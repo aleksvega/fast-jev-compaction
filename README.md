@@ -98,11 +98,16 @@ built-in compaction summary with the original messages.
 Jev failures, malformed answers, a missing key, or a history that cannot be
 fitted throw; the caller (or the Claude Code hook) decides what to fall back to.
 
-## Install and usage
+## Install and usage (upstream — TypeSafe endpoint)
 
-```sh
+The upstream library targets the official TypeSafe API. **This fork does not need
+a TypeSafe key**: use the OpenRouter setup in the "Fork additions" section above
+(`OPENROUTER_API_KEY` only, model `typesafe/jev-1.13:latest` via
+`https://openrouter.ai/api/alpha/decisions`).
+
+```bash
 npm install fast-jev-compaction
-export TYPESAFE_API_KEY=...
+export TYPESAFE_API_KEY=...   # only needed for the upstream/official endpoint
 ```
 
 ```ts
