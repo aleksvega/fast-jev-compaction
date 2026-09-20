@@ -1,3 +1,8 @@
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![npm](https://img.shields.io/npm/v/jev-compact?label=jev-compact)](https://www.npmjs.com/package/jev-compact)
+[![Fork of tamaratran/fast-jev-compaction](https://img.shields.io/badge/fork%20of-tamaratran%2Ffast--jev--compaction-blue)](https://github.com/tamaratran/fast-jev-compaction)
+[![no TypeSafe key](https://img.shields.io/badge/OpenRouter-no%20TypeSafe%20key-purple)](#fork-additions-openrouter-only-setup)
+
 # fast-jev-compaction
 
 Claude Code plugin that replaces the compaction summary with Jev decisions:
