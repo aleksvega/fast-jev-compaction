@@ -103,6 +103,18 @@ built-in compaction summary with the original messages.
 Jev failures, malformed answers, a missing key, or a history that cannot be
 fitted throw; the caller (or the Claude Code hook) decides what to fall back to.
 
+
+### hermes-compact - OpenAI-chat transcripts (Hermes-compatible)
+
+    npm install -g jev-compact
+    OPENROUTER_API_KEY=... hermes-compact transcript.json -o compacted.json
+
+Input: JSON array / {"messages":[...]} / JSONL of OpenAI-chat messages
+(string or array content, nested or flat tool_calls). Output: compacted
+transcript JSON with verbatim kept messages and stats. Adapter semantics
+ported from [deadczarvc/hermes-jev-compaction](https://github.com/deadczarvc/hermes-jev-compaction) (MIT) - thanks! Difference: this build needs no
+TypeSafe key (OpenRouter backend).
+
 ## Install and usage (upstream — TypeSafe endpoint)
 
 The upstream library targets the official TypeSafe API. **This fork does not need
