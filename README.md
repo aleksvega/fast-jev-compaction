@@ -264,3 +264,13 @@ OPENROUTER_API_KEY=... jev-qa <repo> [--diff] [--out report.md] [--max N]
 ```
 
 Замер (our measurements): 15 файлов за 5.4 с, ~$0.001; файл с подсаженным багом — has_bug 0.95 / logic 0.90 против 0.2–0.6 у чистых.
+
+### jev-find — natural-language file search
+
+Find code by meaning, not by name: a Jev walker ensemble walks the repo and reports where walkers landed.
+
+```
+jev-find "where is authentication handled?" ./src --walkers 20
+```
+
+Cheap (~$0.0005/search) and fast (~1-2 s on small repos). Pattern credit: ellipsis-dev/blink.
