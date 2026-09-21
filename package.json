@@ -1,6 +1,6 @@
 {
   "name": "fast-jev-compaction",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Continuous, verbatim context compaction for LLM agents using TypeSafe's Jev model.",
   "type": "module",
   "license": "MIT",
@@ -31,5 +31,8 @@
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8"
+  },
+  "bin": {
+    "jev-qa": "cli/jev-qa.mjs"
   }
 }

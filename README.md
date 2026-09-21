@@ -253,3 +253,14 @@ demo/JevDemo/build.sh   # builds demo/JevDemo/build/JevDemo.app and launches it
 ```
 
 Press space in the app to replay from the start.
+
+
+## jev-qa — быстрый QA-скан репозитория
+
+Ищет ошибки кода за секунды: стадия 1 — бесплатные синтаксис-проверки (py_compile / node --check), стадия 2 — Jev-семантика по каждому файлу (баг, error-handling, security, logic — все вопросы одним пакетом, параллельно).
+
+```bash
+OPENROUTER_API_KEY=... jev-qa <repo> [--diff] [--out report.md] [--max N]
+```
+
+Замер (our measurements): 15 файлов за 5.4 с, ~$0.001; файл с подсаженным багом — has_bug 0.95 / logic 0.90 против 0.2–0.6 у чистых.
