@@ -10,6 +10,29 @@ every tool call and result is scored in one fast request, stale ones are
 dropped or truncated, everything kept stays verbatim. Also usable as an npm
 library.
 
+## Tool suite (this repo + two companion packages)
+
+| CLI | Package | Purpose |
+|---|---|---|
+| `jev-compact` / `jev-gate` | fast-jev-compaction (here) | Verbatim context compaction / dangerous-command gate |
+| `jev-qa`, `jev-find` | fast-jev-compaction (here) | Fast repo QA scan / semantic file search |
+| `jev-enhance` | [jev-prompt-enhancer](https://github.com/aleksvega/jev-prompt-enhancer) | Prompt refinement for vague/voice-transcribed input |
+| `jev-skill-router` | [jev-skill-router](https://github.com/aleksvega/jev-skill-router) | Route a request to the right tool/skill |
+
+## Install for any agent (one command)
+
+```bash
+npx jev-setup <claude|opencode|codex|hermes|generic>
+```
+
+Installs all CLIs globally and wires the chosen agent: Claude Code (plugin
+marketplace), OpenCode (session hook), Codex (AGENTS.md), Hermes (plugin), or
+a generic AGENTS.md. Requires only `OPENROUTER_API_KEY`.
+
+**Agent-friendly:** give your agent this repo link — it reads
+[`SKILL.md`](./SKILL.md) and installs everything itself:
+> "Install Jev tools from https://github.com/aleksvega/fast-jev-compaction"
+
 ## Fork additions: jev-compact + jev-gate (OpenRouter, no TypeSafe key)
 
 This fork (github.com/aleksvega) adds two small CLI tools in `cli/` that run
@@ -210,7 +233,7 @@ Then add this repository as a plugin marketplace and install the plugin,
 either from the shell or as slash commands inside a session:
 
 ```sh
-claude plugin marketplace add tamaratran/fast-jev-compaction
+claude plugin marketplace add aleksvega/fast-jev-compaction
 claude plugin install fast-jev-compaction@fast-jev-compaction
 ```
 
@@ -255,15 +278,15 @@ demo/JevDemo/build.sh   # builds demo/JevDemo/build/JevDemo.app and launches it
 Press space in the app to replay from the start.
 
 
-## jev-qa — быстрый QA-скан репозитория
+## jev-qa — fast repo QA scan
 
-Ищет ошибки кода за секунды: стадия 1 — бесплатные синтаксис-проверки (py_compile / node --check), стадия 2 — Jev-семантика по каждому файлу (баг, error-handling, security, logic — все вопросы одним пакетом, параллельно).
+Finds code errors in seconds: stage 1 — free syntax checks (py_compile / node --check), stage 2 — Jev semantic review per file (bugs, error-handling, security, logic — all questions in one batched request, parallel).
 
 ```bash
 OPENROUTER_API_KEY=... jev-qa <repo> [--diff] [--out report.md] [--max N]
 ```
 
-Замер (our measurements): 15 файлов за 5.4 с, ~$0.001; файл с подсаженным багом — has_bug 0.95 / logic 0.90 против 0.2–0.6 у чистых.
+Measured on our test set: 15 files in 5.4 s, ~$0.001; a file with a planted bug scored has_bug 0.95 / logic 0.90 vs 0.2–0.6 for clean files.
 
 ### jev-find — natural-language file search
 
