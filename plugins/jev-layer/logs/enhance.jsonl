@@ -1,3 +1,0 @@
-{"t": 1790223900.377493, "enhance": true, "needs": 0.76, "problem": "typos", "latency_ms": 2030, "user": "а памаги мне зделать чтоб бот торгавал биткоин но штоб не терял деньгу"}
-{"t": 1790223901.0491881, "enhance": false, "needs": 0.53, "problem": "missing_context", "latency_ms": 484, "user": "Fix the failing test in tests/auth.spec.ts"}
-{"t": 1790224985.89904, "enhance": false, "needs": null, "problem": null, "latency_ms": 2601, "user": "\"Так, во-первых, изучие каждый из инструментариев, внутри этого плагина, протестирую сам сайте плагием, через джев прого"}

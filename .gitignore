@@ -4,3 +4,4 @@ dist
 demo/JevDemo/build
 cli/test-dump.md
 cli/test-transcript.json
+plugins/jev-layer/logs/
