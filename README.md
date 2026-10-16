@@ -47,6 +47,8 @@ OpenRouter instead, set `baseUrl` (library option) or `TYPESAFE_BASE_URL` +
 ```bash
 npm install && npm run build
 export OPENROUTER_API_KEY="sk-or-..."   # your key; never commit it
+# Any provider instead of OpenRouter:
+#   JEV_API_KEY=...  JEV_BASE_URL=https://your-adapter/decisions  JEV_MODEL=...
 ```
 
 **jev-compact — verbatim session compaction**
@@ -180,7 +182,8 @@ method) and call `compact(messages, asker, options)`; `buildJevRequest` and
 The building blocks (`collectToolCalls`, `fitState`, `batchCalls`,
 `decideCall`, `applyDecisions`) are exported too.
 
-`apiKey` defaults to `process.env.TYPESAFE_API_KEY`. Never commit the key or
+`apiKey` defaults to `JEV_API_KEY` || `OPENROUTER_API_KEY` || `TYPESAFE_API_KEY`,
+`baseUrl` to `JEV_BASE_URL` (else the System One endpoint). Never commit the key or
 put it in a source file.
 
 ## Options

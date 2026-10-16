@@ -12,10 +12,18 @@ Gate rule: block if any noul >= threshold OR tests_risk >= 3; allow otherwise.
 import json, os, re, subprocess, sys, time, urllib.request
 
 def api_key():
-    key = os.environ.get("OPENROUTER_API_KEY", "").strip()
+    key = (
+        os.environ.get("JEV_API_KEY")
+        or os.environ.get("OPENROUTER_API_KEY")
+        or os.environ.get("TYPESAFE_API_KEY")
+        or ""
+    ).strip()
     if not key:
-        sys.exit("jev-gate: set OPENROUTER_API_KEY in your environment (never hardcode it)")
+        sys.exit("jev-gate: set OPENROUTER_API_KEY (default), TYPESAFE_API_KEY, or JEV_API_KEY for a custom provider (never hardcode keys)")
     return key
+
+def base_url():
+    return os.environ.get("JEV_BASE_URL", "https://openrouter.ai/api/alpha/decisions").strip()
 
 def git(repo, *args):
     return subprocess.run(["git", "-C", repo, *args], capture_output=True, text=True, timeout=60).stdout
@@ -48,7 +56,7 @@ def main():
     }
     body = {"model": os.environ.get("JEV_MODEL", "typesafe/jev-1.13"), "state": state, "questions": questions}
     req = urllib.request.Request(
-        "https://openrouter.ai/api/alpha/decisions",
+        base_url(),
         data=json.dumps(body).encode(),
         headers={"Authorization": f"Bearer {api_key()}", "Content-Type": "application/json"},
     )

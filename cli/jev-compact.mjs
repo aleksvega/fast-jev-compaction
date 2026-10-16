@@ -29,9 +29,9 @@ if (!inFile) {
   process.exit(2);
 }
 
-const apiKey = process.env.OPENROUTER_API_KEY;
+const apiKey = process.env.JEV_API_KEY || process.env.OPENROUTER_API_KEY || process.env.TYPESAFE_API_KEY;
 if (!apiKey) {
-  console.error('OPENROUTER_API_KEY is not set');
+  console.error('Set JEV_API_KEY (any provider), OPENROUTER_API_KEY (default) or TYPESAFE_API_KEY');
   process.exit(2);
 }
 

@@ -27,11 +27,12 @@ const MAXD = flag('--depth', 10);
 const SKIP = new Set(['node_modules', '.git', 'dist', '.venv', 'venv', '__pycache__', '.next', 'build', 'coverage', '.vercel']);
 const MAX_CHILDREN = 28;
 
-const apiKey = process.env.OPENROUTER_API_KEY;
-if (!apiKey) { console.error('OPENROUTER_API_KEY not set'); process.exit(1); }
+const apiKey = process.env.JEV_API_KEY || process.env.OPENROUTER_API_KEY || process.env.TYPESAFE_API_KEY;
+if (!apiKey) { console.error('Set JEV_API_KEY (any provider), OPENROUTER_API_KEY (default) or TYPESAFE_API_KEY'); process.exit(1); }
+const BASE = (process.env.JEV_BASE_URL || 'https://openrouter.ai/api/alpha/decisions').replace(/\/$/, '');
 
 async function jev(state, questions) {
-  const res = await fetch('https://openrouter.ai/api/alpha/decisions', {
+  const res = await fetch(BASE, {
     method: 'POST',
     headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({ model: process.env.JEV_MODEL || 'typesafe/jev-1.13', state: state.slice(0, 20_000), questions }),
