@@ -10,6 +10,11 @@
       "description": "TypeSafe API key. Leave unset to use TYPESAFE_API_KEY.",
       "sensitive": true
     },
+    "baseUrl": {
+      "type": "string",
+      "title": "TypeSafe base URL",
+      "description": "Overrides the TypeSafe endpoint (e.g. a self-hosted proxy). Leave unset to use TYPESAFE_BASE_URL or api.typesafe.ai."
+    },
     "keepThreshold": {
       "type": "number",
       "title": "Keep threshold",
