@@ -298,7 +298,7 @@ def _cmd_test(params=None, **kwargs):
         results.append(("enhance clear -> untouched", not d.get("enhance"), f"needs={d.get('needs_refinement')}"))
     except Exception:
         results.append(("enhance clear -> untouched", False, "parse fail"))
-    a1 = _jev_decide("Terminal command: rm -rf /c/Users/bistr/Projects",
+    a1 = _jev_decide("Terminal command: rm -rf /c/Users/example/Projects",
                      {"type": "noul", "instructions": "Is this command dangerous (irreversible data loss)? Probability of dangerous."})
     a2 = _jev_decide("Terminal command: npm test",
                      {"type": "noul", "instructions": "Is this command dangerous (irreversible data loss)? Probability of dangerous."})
